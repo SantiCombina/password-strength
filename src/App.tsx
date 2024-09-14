@@ -1,5 +1,6 @@
 import {useMemo, useState} from "react";
 import {Copy, Eye, EyeOff, RefreshCw} from "lucide-react";
+import zxcvbn from "zxcvbn";
 
 import {Input} from "./components/ui/input";
 import {Button} from "./components/ui/button";
@@ -25,28 +26,22 @@ function App() {
     };
 
     const passwordStrength = useMemo(() => {
+        if (password.length === 0) {
+            return {message: "No password", color: "bg-gray-500"};
+        }
+
+        const result = zxcvbn(password);
+        const score = result.score;
+
         const status = {
-            0: {message: "No password", color: "bg-gray-500"},
-            1: {message: "Very weak", color: "bg-red-500"},
-            2: {message: "Weak", color: "bg-orange-500"},
-            3: {message: "Medium", color: "bg-yellow-500"},
-            4: {message: "Strong", color: "bg-blue-500"},
-            5: {message: "Very strong", color: "bg-green-500"},
+            0: {message: "Very Weak", color: "bg-red-500"},
+            1: {message: "Weak", color: "bg-orange-500"},
+            2: {message: "Fair", color: "bg-yellow-500"},
+            3: {message: "Good", color: "bg-blue-500"},
+            4: {message: "Strong", color: "bg-green-500"},
         };
 
-        return status[
-            password.length === 0
-                ? 0
-                : password.length < 4
-                ? 1
-                : password.length < 8
-                ? 2
-                : password.length < 12
-                ? 3
-                : password.length < 16
-                ? 4
-                : 5
-        ];
+        return status[score] || status[0];
     }, [password]);
 
     return (

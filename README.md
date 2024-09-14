@@ -9,7 +9,7 @@ El objetivo de esta aplicación es demostrar la capacidad para aplicar conceptos
 ## Requisitos Técnicos Generales
 
 - **Componentes:**
-  - La aplicación cuenta con varios componentes.
+  - La aplicación cuenta con varios componentes y se utiliza la biblioteca [shadcn](https://ui.shadcn.com/) para la interfaz de usuario.
   
 - **Propiedades:**
   - `GeneratorMenu` recibe propiedades (`password`, `setPassword`) y utiliza el estado para gestionar la contraseña generada.
@@ -26,10 +26,10 @@ El objetivo de esta aplicación es demostrar la capacidad para aplicar conceptos
   - Un botón para alternar la visibilidad de la contraseña ingresada.
 
 - **Clasificación de fortaleza de contraseña:**
-  - La fortaleza de la contraseña se clasifica en "Very weak", "Weak", "Medium", "Strong", "Very strong" en función de criterios como longitud y diversidad de caracteres.
+  - La fortaleza de la contraseña se clasifica en "Very Weak", "Weak", "Fair", "Good", "Strong" en función de criterios como longitud y diversidad de caracteres.
 
 - **Cálculo de fortaleza:**
-  - La fortaleza se evalúa basándose en la longitud de la contraseña y la presencia de letras mayúsculas, minúsculas, números y símbolos.
+  - La fortaleza se evalúa utilizando la librería [zxcvbn](https://github.com/dropbox/zxcvbn), que proporciona una evaluación detallada y profesional basada en la longitud, la diversidad de caracteres y la complejidad de la contraseña.
 
 ## Power Ups Implementados
 
@@ -43,4 +43,4 @@ El objetivo de esta aplicación es demostrar la capacidad para aplicar conceptos
 
 ## Despliegue
 
-La aplicación está desplegada en [Vercel](https://password-strength-ruby.vercel.app/). Puedes probar la aplicación directamente desde este enlace.
+La aplicación está desplegada en Vercel. Puedes probar la aplicación directamente desde este enlace: [Password Strength Tester](https://password-strength-ruby.vercel.app/)

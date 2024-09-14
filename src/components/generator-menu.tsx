@@ -21,6 +21,8 @@ export function GeneratorMenu({children, password, setPassword}: Props) {
     });
 
     useEffect(() => {
+        if (passwordChars.passwordLength <= 0) return;
+
         const length = passwordChars.passwordLength;
         let charset = "";
         const guaranteedChars = [];

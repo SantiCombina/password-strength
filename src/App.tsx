@@ -26,15 +26,26 @@ function App() {
 
     const passwordStrength = useMemo(() => {
         const status = {
-            0: {message: "Very weak", color: "bg-red-500"},
-            1: {message: "Weak", color: "bg-orange-500"},
-            2: {message: "Medium", color: "bg-yellow-500"},
-            3: {message: "Strong", color: "bg-blue-500"},
-            4: {message: "Very strong", color: "bg-green-500"},
+            0: {message: "No password", color: "bg-gray-500"},
+            1: {message: "Very weak", color: "bg-red-500"},
+            2: {message: "Weak", color: "bg-orange-500"},
+            3: {message: "Medium", color: "bg-yellow-500"},
+            4: {message: "Strong", color: "bg-blue-500"},
+            5: {message: "Very strong", color: "bg-green-500"},
         };
 
         return status[
-            password.length < 4 ? 0 : password.length < 8 ? 1 : password.length < 12 ? 2 : password.length < 16 ? 3 : 4
+            password.length === 0
+                ? 0
+                : password.length < 4
+                ? 1
+                : password.length < 8
+                ? 2
+                : password.length < 12
+                ? 3
+                : password.length < 16
+                ? 4
+                : 5
         ];
     }, [password]);
 

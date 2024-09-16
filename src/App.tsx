@@ -7,23 +7,13 @@ import {Button} from "./components/ui/button";
 import {TooltipComponent} from "./components/tooltip-component";
 import {GeneratorMenu} from "./components/generator-menu";
 import {cn} from "./lib/utils";
+import {useCopyToClipboard} from "./hooks/useCopyToClipboard";
 
 function App() {
     const [showPassword, setShowPassword] = useState(false);
     const [password, setPassword] = useState("");
-    const [isCopied, setIsCopied] = useState(false);
 
-    const copyToClipboard = () => {
-        navigator.clipboard
-            .writeText(password)
-            .then(() => {
-                setIsCopied(true);
-                setTimeout(() => setIsCopied(false), 3000);
-            })
-            .catch(() => {
-                alert("Failed to copy to clipboard");
-            });
-    };
+    const {isCopied, copyToClipboard} = useCopyToClipboard();
 
     const passwordStrength = useMemo(() => {
         if (password.length === 0) {
@@ -63,11 +53,12 @@ function App() {
                         />
                         <TooltipComponent text="Copy">
                             <Button
-                                className={`text-gray-800 bg-white rounded-none hover:bg-white/90 relative copy-button ${
-                                    isCopied ? "animate" : ""
-                                }`}
+                                className={cn(
+                                    "text-gray-800 bg-white rounded-none hover:bg-white/90 relative copy-button",
+                                    isCopied && "animate",
+                                )}
                                 size={"icon"}
-                                onClick={copyToClipboard}
+                                onClick={() => copyToClipboard(password)}
                             >
                                 <Copy />
                             </Button>

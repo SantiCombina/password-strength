@@ -6,6 +6,7 @@ export default {
         extend: {
             fontFamily: {
                 inter: ["Inter", "sans-serif"],
+                mono: ["JetBrains Mono", "Fira Code", "Consolas", "monospace"],
             },
             container: {
                 center: "true",
@@ -55,6 +56,28 @@ export default {
                     3: "hsl(var(--chart-3))",
                     4: "hsl(var(--chart-4))",
                     5: "hsl(var(--chart-5))",
+                },
+                matrix: {
+                    green: "#5dba78",
+                    dim:   "#3d8a55",
+                    dark:  "#060f06",
+                    card:  "#080f08",
+                },
+            },
+            animation: {
+                blink:   "blink 1s step-end infinite",
+                flicker: "flicker 3s ease-in-out infinite",
+            },
+            keyframes: {
+                blink: {
+                    "0%, 100%": { opacity: "1" },
+                    "50%":      { opacity: "0" },
+                },
+                flicker: {
+                    "0%, 100%": { opacity: "1" },
+                    "92%":      { opacity: "0.98" },
+                    "95%":      { opacity: "0.94" },
+                    "97%":      { opacity: "0.99" },
                 },
             },
         },
